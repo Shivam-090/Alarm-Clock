@@ -63,11 +63,11 @@ scrollbar = Scrollbar(stpwtch_root)
 scrollbar.pack(side = RIGHT, fill = Y)
 
 # stpwtch_root.iconbitmap("stopwatch.ico")
-stpwtch_root.configure(bg="#FFE873")
+stpwtch_root.configure()
 # Fixing the window size.
 stpwtch_root.minsize(width=250, height=70)
 #label = Label(stpwtch_root, text="Welcome!")
-label = Label(stpwtch_root, text="Welcome!") #fg="#4B8BBE", bg="#FFE873", font="Verdana 30 bold")
+label = Label(stpwtch_root, text="Welcome!", font=("Arial", 25)) #fg="#4B8BBE", bg="#FFE873", font="Verdana 30 bold")
 label.pack()
 f = Frame(stpwtch_root)
 start = Button(f, text='Start', width=6, command=lambda: Start(label))
