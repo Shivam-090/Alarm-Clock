@@ -1,42 +1,7 @@
 import time
-from tkinter import *
+import tkinter as tk
 from tkinter import messagebox
 from tkinter.ttk import *
- 
-# creating Tk window
-timer_root = Tk()
-
-# setting geometry of tk window
-timer_root.geometry("300x250")
-
-# Using title() to display a message in
-# the dialogue box of the message in the
-# title bar.
-timer_root.title("Time Counter")
-
-# Declaration of variables
-hour=StringVar()
-minute=StringVar()
-second=StringVar()
-
-# setting the default value as 0
-hour.set("00")
-minute.set("00")
-second.set("00")
-
-# Use of Entry class to take input from the user
-hourEntry= Entry(timer_root, width=3, font=("Arial",18,""),
-                textvariable=hour)
-hourEntry.place(x=80,y=20)
-
-minuteEntry= Entry(timer_root, width=3, font=("Arial",18,""),
-                textvariable=minute)
-minuteEntry.place(x=130,y=20)
-
-secondEntry= Entry(timer_root, width=3, font=("Arial",18,""),
-                textvariable=second)
-secondEntry.place(x=180,y=20)
-
 
 def submit():
     try:
@@ -80,10 +45,56 @@ def submit():
         # by one
         temp -= 1
 
+
+# creating Tk window
+timer_root = tk.Tk()
+
+# setting geometry of tk window
+timer_root.minsize(width=250,height=120)
+timer_root.maxsize(width=250,height=120)
+
+# Using title() to display a message in
+# the dialogue box of the message in the
+# title bar.
+timer_root.title("Time Counter")
+
+# Declaration of variables
+hour=tk.StringVar()
+minute=tk.StringVar()
+second=tk.StringVar()
+
+# setting the default value as 0
+hour.set("00")
+minute.set("00")
+second.set("00")
+
+f1=Frame(timer_root)
+f1.pack()
+
+# Use of Entry class to take input from the user
+hourEntry= Entry(f1, width=3, font=("Arial",18,""),
+                textvariable=hour)
+# hourEntry.place(x=80,y=20)
+hourEntry.pack(side=tk.LEFT)
+
+minuteEntry= Entry(f1, width=3, font=("Arial",18,""),
+                textvariable=minute)
+# minuteEntry.place(x=130,y=20)
+minuteEntry.pack(side=tk.LEFT)
+
+secondEntry= Entry(f1, width=3, font=("Arial",18,""),
+                textvariable=second)
+secondEntry.pack(side=tk.LEFT)
+
+Label(timer_root, text="Hour   Minute   Second").pack()
+#Label(timer_root, text="Minute").pack(side=LEFT)
+#Label(timer_root, text="Second").pack(side=LEFT)
+
 # button widget
 btn = Button(timer_root, text='Set Time Countdown',command= submit)
 # btn = Button(timer_root, text='Set Time Countdown', bd='5',command= submit)
-btn.place(x = 70,y = 120)
+btn.pack(ipadx=20,pady=8)
+# btn.place(x = 70,y = 120)
 
 # infinite loop which is required to
 # run tkinter program infinitely
