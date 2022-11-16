@@ -9,7 +9,7 @@ from PIL import Image, ImageTk
 alarm_clock = tk.Tk()
 # Set geometry
 alarm_clock.minsize(400,200)
-alarm_clock.maxsize(400,200)
+alarm_clock.title("Alarm Clock")
 
 # Use Threading
 def Threading():
