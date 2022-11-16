@@ -11,7 +11,6 @@ def submit():
     except:
         print("Please input the right value")
     while temp >-1:
-        
         # divmod(firstvalue = temp//60, secondvalue = temp%60)
         mins,secs = divmod(temp,60)
 
@@ -87,14 +86,9 @@ secondEntry= Entry(f1, width=3, font=("Arial",18,""),
 secondEntry.pack(side=tk.LEFT)
 
 Label(timer_root, text="Hour   Minute   Second").pack()
-#Label(timer_root, text="Minute").pack(side=LEFT)
-#Label(timer_root, text="Second").pack(side=LEFT)
-
 # button widget
 btn = Button(timer_root, text='Set Time Countdown',command= submit)
-# btn = Button(timer_root, text='Set Time Countdown', bd='5',command= submit)
 btn.pack(ipadx=20,pady=8)
-# btn.place(x = 70,y = 120)
 
 # infinite loop which is required to
 # run tkinter program infinitely

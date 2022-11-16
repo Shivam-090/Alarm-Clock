@@ -30,12 +30,9 @@ def alarm():
         if current_time == set_alarm_time:
             print("Time to Wake up")
             # Playing sound
-            # winsound.PlaySound("sound.wav",winsound.SND_ASYNC)
-            # winsound.Beep(23511,5)
-            # winsound.PlaySound('Welcome.wav', winsound.SND_FILENAME)
             freq = 5000
 
-            # duration is set to 100 milliseconds
+            # duration is set to 2 seconds
             dur = 2000
 
             winsound.Beep(freq, dur)
@@ -44,9 +41,7 @@ def alarm():
 
 # Add Labels, Frame, Button, Optionmenus
 tk.Label(alarm_clock, text="Alarm Clock").pack(pady=10)
-# Label(alarm_clock,text="Alarm Clock",font=("Helvetica 20 bold"),fg="red").pack(pady=10)
 tk.Label(alarm_clock, text="Set Time").pack()
-# Label(alarm_clock,text="Set Time",font=("Helvetica 15 bold")).pack()
 frame = tk.Frame(alarm_clock)
 frame.pack()
 hour = tk.StringVar(alarm_clock)
@@ -85,6 +80,5 @@ secs.pack(side=tk.LEFT)
 tk.Button(alarm_clock, text="Set Alarm", command=Threading).pack(pady=20)
 tk.Button(alarm_clock, text="Disable", command=alarm_clock.destroy).pack(pady=20)
 
-# Button(alarm_clock,text="Set Alarm",font=("Helvetica 15"),command=Threading).pack(pady=20)
 # Execute Tkinter
 alarm_clock.mainloop()

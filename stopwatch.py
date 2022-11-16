@@ -1,9 +1,22 @@
-from tkinter import *
+import tkinter as tk
 from tkinter.ttk import *
 from datetime import datetime
 
 counter = 66600
 running = False
+count = 1
+
+def lap():
+    global count 
+    lbx1.insert(tk.END,datetime.fromtimestamp(counter-1).strftime("%H:%M:%S"))
+    lbx2.insert(tk.END,str(count) + ". ")
+    stpwtch_root.update()
+    count = count + 1
+
+def multiple_yview(*args):
+    lbx2.yview(*args)
+    lbx1.yview(*args)
+
 def counter_label(label):
     def count():
         if running:
@@ -37,8 +50,11 @@ def Stop():
     running = False
 # Reset function of the stopwatch
 def Reset(label):
-    global counter
+    global counter, count
     counter = 66600
+    count = 1
+    lbx1.delete(0, tk.END)
+    lbx2.delete(0, tk.END)
     # If rest is pressed after pressing stop.
     if running == False:
         reset['state'] = 'disabled'
@@ -46,14 +62,18 @@ def Reset(label):
     # If reset is pressed while the stopwatch is running.
     else:
         label['text'] = 'Starting...'
-stpwtch_root = Tk()
+
+stpwtch_root = tk.Tk()
 stpwtch_root.title("Stopwatch")
-# stpwtch_root.iconbitmap("stopwatch.ico")
+scrollbar = Scrollbar(stpwtch_root)
+scrollbar.pack(side = tk.RIGHT, fill = tk.Y)
+
 stpwtch_root.configure()
 # Fixing the window size.
-stpwtch_root.minsize(width=250, height=70)
+stpwtch_root.minsize(width=250, height=400)
+stpwtch_root.maxsize(width=250, height=400)
+#label = Label(stpwtch_root, text="Welcome!")
 label = Label(stpwtch_root, text="Welcome!", font=("Arial", 25))
-# label = Label(stpwtch_root, text="Welcome!", fg="#4B8BBE", bg="#FFE873", font="Verdana 30 bold")
 label.pack()
 f = Frame(stpwtch_root)
 start = Button(f, text='Start', width=6, command=lambda: Start(label))
@@ -61,7 +81,17 @@ stop = Button(f, text='Stop', width=6, state='disabled', command=Stop)
 reset = Button(f, text='Reset', width=6,
                     state='disabled', command=lambda: Reset(label))
 f.pack(anchor='center', pady=5)
-start.pack(fill = BOTH , side="left")
-stop.pack(fill = BOTH , side="left")
-reset.pack(fill = BOTH ,side="left")
+start.pack(fill = tk.BOTH , side="left")
+stop.pack(fill = tk.BOTH , side="left")
+reset.pack(fill = tk.BOTH ,side="left")
+
+Button(stpwtch_root, text="Lap", command=lap, width=16).pack(ipadx=20)
+f1=Frame(stpwtch_root)
+f1.pack(pady=5)
+lbx2 = tk.Listbox(f1,width=2, height=14, yscrollcommand=scrollbar.set)
+lbx1 = tk.Listbox(f1,width=18, height=8,yscrollcommand= scrollbar.set)
+scrollbar.config(command=multiple_yview)
+lbx2.pack(side=tk.LEFT)
+lbx1.pack(ipadx=20, ipady=50, pady=6, side=tk.LEFT)
+
 stpwtch_root.mainloop()
