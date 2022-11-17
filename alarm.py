@@ -1,20 +1,37 @@
+from playsound import playsound
 import tkinter as tk
 import datetime
 import time
-import winsound
 from threading import *
-from PIL import Image, ImageTk
+from pynput.keyboard import Key, Controller
+
+keyboard = Controller()
+
+
+def vloumeup():
+    keyboard.press(Key.media_volume_up)
+    keyboard.release(Key.media_volume_up)
+
+
+def volumdown():
+    keyboard.press(Key.media_volume_down)
+    keyboard.release(Key.media_volume_down)
+
 
 # Create Object
 alarm_clock = tk.Tk()
 # Set geometry
-alarm_clock.minsize(400,200)
 alarm_clock.title("Alarm Clock")
+alarm_clock.minsize(320, 250)
+alarm_clock.maxsize(320, 250)
 
 # Use Threading
+
+
 def Threading():
     t1 = Thread(target=alarm)
     t1.start()
+
 
 def alarm():
     # Infinite Loop
@@ -29,14 +46,15 @@ def alarm():
         # Check whether set alarm is equal to current time or not
         if current_time == set_alarm_time:
             print("Time to Wake up")
-            # Playing sound
-            freq = 5000
+            '''freq = 5000
 
-            # duration is set to 2 seconds
+            # duration is set to 100 milliseconds
             dur = 2000
 
             winsound.Beep(freq, dur)
-            winsound.Beep(freq, dur)
+            winsound.Beep(freq, dur)'''
+            playsound("alarm_buzz.wav")
+            break
 
 
 # Add Labels, Frame, Button, Optionmenus
@@ -77,8 +95,15 @@ second.set(seconds[0])
 secs = tk.OptionMenu(frame, second, *seconds)
 secs.pack(side=tk.LEFT)
 
-tk.Button(alarm_clock, text="Set Alarm", command=Threading).pack(pady=20)
-tk.Button(alarm_clock, text="Disable", command=alarm_clock.destroy).pack(pady=20)
+frame = tk.Frame(alarm_clock)
+frame.pack(padx=50, pady=25)
+
+tk.Button(frame, text="Set Alarm", command=Threading).pack(side=tk.LEFT)
+tk.Button(frame, text="Volume UP", command=vloumeup).pack(side=tk.LEFT)
+tk.Button(frame, text="Volume Down", command=volumdown).pack(side=tk.LEFT)
+
+tk.Button(alarm_clock, text="Disable",
+          command=alarm_clock.destroy).pack(pady=20)
 
 # Execute Tkinter
 alarm_clock.mainloop()
