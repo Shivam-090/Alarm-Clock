@@ -8,7 +8,7 @@ from pynput.keyboard import Key, Controller
 keyboard = Controller()
 
 
-def vloumeup():
+def volumeup():
     keyboard.press(Key.media_volume_up)
     keyboard.release(Key.media_volume_up)
 
@@ -99,7 +99,7 @@ frame = tk.Frame(alarm_clock)
 frame.pack(padx=50, pady=25)
 
 tk.Button(frame, text="Set Alarm", command=Threading).pack(side=tk.LEFT)
-tk.Button(frame, text="Volume UP", command=vloumeup).pack(side=tk.LEFT)
+tk.Button(frame, text="Volume UP", command=volumeup).pack(side=tk.LEFT)
 tk.Button(frame, text="Volume Down", command=volumdown).pack(side=tk.LEFT)
 
 tk.Button(alarm_clock, text="Disable",
