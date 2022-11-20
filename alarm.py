@@ -53,7 +53,7 @@ def alarm():
 
             winsound.Beep(freq, dur)
             winsound.Beep(freq, dur)'''
-            playsound("alarm_buzz.wav")
+            playsound("G:\\.NCU Assignment Files\\Programming for Data Science\\Trial\\alarm_buzz.wav")
             break
 
 
